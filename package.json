@@ -1,0 +1,21 @@
+{
+  "name": "node-apirest-tdd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "exp": "^57.2.1",
+    "express": "^4.17.1"
+  }
+}
