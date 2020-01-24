@@ -17,6 +17,7 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "exp": "^57.2.1",
     "express": "^4.17.1"
   }
