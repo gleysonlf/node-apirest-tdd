@@ -2,6 +2,12 @@ const request = require("supertest");
 
 const app = require('../../src/app');
 
+const user = {
+  name: 'Test User',
+  email: `${Date.now()}@email.com`,
+  password: '12356'
+}
+
 test('Deve listar todos os usuários', () => {
   return request(app).get('/users')
     .then(res => {
@@ -11,11 +17,20 @@ test('Deve listar todos os usuários', () => {
 });
 
 test('Deve inserir usuário com sucesso', () => {
-  const email = `${Date.now()}@email.com`
   return request(app).post('/users')
-    .send({ name: 'Taskan Skylander', email, password: '12356' })
+    .send({ ...user })
     .then(res => {
       expect(res.status).toBe(201);
-      expect(res.body.name).toBe('Taskan Skylander')
+      expect(res.body.name).toBe(user.name);
     })
 })
+
+test('Não deve inserir usuário sem nome', () => {
+  return request(app).post('/users')
+    .send({ email: user.email, password: user.password })
+    .then(res => {
+      expect(res.status).toBe(400);
+      expect(res.body.error).toBe('Propriedade "name" é um atribuo obrigatório.');
+    });
+})
+
