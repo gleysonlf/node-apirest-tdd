@@ -4,7 +4,8 @@ module.exports = (app) => {
   }
 
   const save = (user) => {
-    if (!user.name) return { error: 'Propriedade "name" é um atribuo obrigatório.' }
+    if (!user.name) return { error: 'Propriedade "name" é um atributo obrigatório.' }
+    if (!user.email) return { error: 'Propriedade "email" é um atributo obrigatório.' }
     return app.db('users').insert(user, '*');
   }
 
