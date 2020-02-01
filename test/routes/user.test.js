@@ -34,10 +34,23 @@ test('Não deve inserir usuário sem nome', () => {
     });
 })
 
-test('Não deve inserir usuário sem email', async () => {
+// Example async
+test('Não deve inserir usuário sem email', async () => { 
   const res = await request(app).post('/users')
     .send({ name: user.name, password: user.password });
   expect(res.status).toBe(400);
   expect(res.body.error).toBe('Propriedade "email" é um atributo obrigatório.');
+})
+
+// Example "done" control
+test('Não deve inserir usuário sem senha', (done) => {
+  request(app).post('/users')
+    .send({ name: user.name, email: user.email })
+    .then(res => {
+      expect(res.status).toBe(400);
+      expect(res.body.error).toBe('Propriedade "password" é um atributo obrigatório.');
+      done();
+    })
+    .catch(err => done.fail(err))
 })
 
