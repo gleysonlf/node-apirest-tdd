@@ -3,7 +3,7 @@ const request = require("supertest");
 const app = require('../../src/app');
 
 const user = {
-  name: 'Test User',
+  name: 'Tester User',
   email: `${Date.now()}@email.com`,
   password: '12356'
 }
@@ -34,7 +34,7 @@ test('Não deve inserir usuário sem nome', () => {
     });
 })
 
-// Example async
+// Example "async" control
 test('Não deve inserir usuário sem email', async () => { 
   const res = await request(app).post('/users')
     .send({ name: user.name, password: user.password });
@@ -52,5 +52,16 @@ test('Não deve inserir usuário sem senha', (done) => {
       done();
     })
     .catch(err => done.fail(err))
+})
+
+
+test('Não deve inserir usuário com email existente', () => {
+  
+  return request(app).post('/users')
+    .send({ ...user })
+    .then(res => {
+      expect(res.status).toBe(400);
+      expect(res.body.error).toBe('Já existe um usuário com esse e-mail.');
+    });
 })
 
