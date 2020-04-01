@@ -15,6 +15,7 @@ npm i -S pg
 
 ```
 node_modules\.bin\knex.cmd migrate:make create_users --env test
+node_modules\.bin\knex.cmd migrate:make create_accounts --env test
 node_modules\.bin\knex.cmd migrate:latest --env test
 node_modules\.bin\knex.cmd migrate:rollback --env test
 ```
