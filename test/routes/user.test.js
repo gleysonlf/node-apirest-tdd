@@ -18,7 +18,9 @@ test('Deve listar todos os usuários', () => {
 
 test('Deve inserir usuário com sucesso', () => {
   return request(app).post('/users')
-    .send({ ...user })
+    .send({
+      ...user
+    })
     .then(res => {
       expect(res.status).toBe(201);
       expect(res.body.name).toBe(user.name);
@@ -27,7 +29,10 @@ test('Deve inserir usuário com sucesso', () => {
 
 test('Não deve inserir usuário sem nome', () => {
   return request(app).post('/users')
-    .send({ email: user.email, password: user.password })
+    .send({
+      email: user.email,
+      password: user.password
+    })
     .then(res => {
       expect(res.status).toBe(400);
       expect(res.body.error).toBe('Propriedade "name" é um atributo obrigatório.');
@@ -35,9 +40,12 @@ test('Não deve inserir usuário sem nome', () => {
 })
 
 // Example "async" control
-test('Não deve inserir usuário sem email', async () => { 
+test('Não deve inserir usuário sem email', async () => {
   const res = await request(app).post('/users')
-    .send({ name: user.name, password: user.password });
+    .send({
+      name: user.name,
+      password: user.password
+    });
   expect(res.status).toBe(400);
   expect(res.body.error).toBe('Propriedade "email" é um atributo obrigatório.');
 })
@@ -45,7 +53,10 @@ test('Não deve inserir usuário sem email', async () => {
 // Example "done" control
 test('Não deve inserir usuário sem senha', (done) => {
   request(app).post('/users')
-    .send({ name: user.name, email: user.email })
+    .send({
+      name: user.name,
+      email: user.email
+    })
     .then(res => {
       expect(res.status).toBe(400);
       expect(res.body.error).toBe('Propriedade "password" é um atributo obrigatório.');
@@ -56,12 +67,13 @@ test('Não deve inserir usuário sem senha', (done) => {
 
 
 test('Não deve inserir usuário com email existente', () => {
-  
+
   return request(app).post('/users')
-    .send({ ...user })
+    .send({
+      ...user
+    })
     .then(res => {
       expect(res.status).toBe(400);
       expect(res.body.error).toBe('Já existe um usuário com esse e-mail.');
     });
 })
-
