@@ -29,3 +29,17 @@ test('Deve inserir uma conta com sucesso', () => {
       expect(res.body.name).toBe(account.name);
     })
 })
+
+test('Deve listar todas as contas', () => {
+  const account = {
+    name: 'Acc to list',
+    user_id: user.id
+  };
+  return app.db('accounts')
+    .insert(account)
+    .then(() => request(app).get(MAIN_ROUTE))
+    .then(res => {
+      expect(res.status).toBe(200);
+      expect(res.body.length).toBeGreaterThan(0);
+    })
+})
