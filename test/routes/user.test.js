@@ -14,7 +14,7 @@ test('Deve listar todos os usuários', () => {
       expect(res.status).toBe(200);
       expect(res.body.length).toBeGreaterThan(0);
     })
-});
+})
 
 test('Deve inserir usuário com sucesso', () => {
   return request(app).post('/users')
