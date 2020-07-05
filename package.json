@@ -13,7 +13,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "jest": "^24.9.0",
+    "jest": "^26.1.0",
+    "pg": "^8.2.1",
     "supertest": "^4.0.2"
   },
   "dependencies": {
@@ -21,7 +22,6 @@
     "consign": "^0.1.6",
     "exp": "^57.2.1",
     "express": "^4.17.1",
-    "knex": "^0.20.8",
-    "pg": "^7.17.1"
+    "knex": "^0.21.1"
   }
 }

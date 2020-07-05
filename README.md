@@ -1,4 +1,4 @@
-# Best API REST
+# TDD API REST
 > API REST em Node.JS aplicando testes (TDD) desde o princípio
 
 
@@ -12,12 +12,23 @@ npm i -S knex
 npm i -S pg
 ```
 
+## Knext e Migrations
+> As Migrations são uma maneira de fazer alterações ou atualizações do banco de dados, como criar ou eliminar tabelas, bem como atualizar uma tabela com novas colunas com restrições por meio de scripts gerados. Podemos criar esses scripts através da linha de comando usando a ferramenta de linha de comando knex.
 
+Comandos para criação das migrations:
 ```
-node_modules\.bin\knex.cmd migrate:make create_users --env test
-node_modules\.bin\knex.cmd migrate:make create_accounts --env test
-node_modules\.bin\knex.cmd migrate:latest --env test
-node_modules\.bin\knex.cmd migrate:rollback --env test
+npx knex migrate:make create_users --env test
+npx knex migrate:make create_accounts --env test
+```
+
+Comando para execução das migrate:
+```
+npx knex migrate:latest --env test
+```
+
+Comando para retornar o processo executado pela migrate
+```
+npx knex migrate:rollback --env test
 ```
 
 
