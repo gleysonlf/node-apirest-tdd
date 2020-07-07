@@ -7,13 +7,13 @@ const knexfile = require('../knexFile');
 app.db = knex(knexfile.test);
 
 consign({ cwd: 'src', verbose: false })
-    .include('./config/middlewares.js')
-    .then('./services')
-    .then('./routes')
-    .then('./config/routes.js')
-    .into(app);
+  .include('./config/middlewares.js')
+  .then('./services')
+  .then('./routes')
+  .then('./config/routes.js')
+  .into(app);
 
-app.get('/', (req, res) => res.status(200).send())
+app.get('/', (req, res) => res.status(200).send());
 
 // Bloco de código para analise de consulta/erro de banco
 // app.db
